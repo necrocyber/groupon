@@ -5,37 +5,39 @@ class Table extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            film : [],
-            favorites : []
+            film : []
         }
+
     }
 
     favoritesClick(film) {
-        const Favorites = this.state.favorites;
-        Favorites.push(film)
-        this.setState({ favorites: Favorites })
-        // Save in LocalStorage
-        localStorage.setItem('Film', this.state.favorites)
+        const getFilm = JSON.parse(localStorage.getItem('Film'));
+        const local = (getFilm) ? JSON.parse(localStorage.getItem('Film')) : []
+        local.push(film)
+        localStorage.setItem('Film', JSON.stringify(local))
     }
 
     getFavorites() {
-        console.log("Favorites!!!")
-        this.setState({ film: this.state.favorites })
+        const local = JSON.parse(localStorage.getItem('Film'))
+        if(local) { this.setState({ film: local }) }
+        else { this.setState({ film: [] }) }
+        
     }
 
-    componentDidMount() {
-        fetch('http://www.omdbapi.com/?apikey=4f41e4c2&s=terror&plot=full')
-        .then(response => response.json())
-        .then(result => this.setState({ film : result.Search }))
+    componentWillReceiveProps(newProps) {
+        this.setState({ film: newProps.NewResult })
     }
+
+
     render() {
+        
         const films = (this.state.film).map((item, i) => {
             return (
                 <div key={i} className="col-sm-4 col-md-3 margin-top">
                     <div className="card">
                         <img src={ item.Poster } className="card-img-top image-resize" alt="cine"/>
                         <div className="card-footer">
-                            <FaStar onClick={this.favoritesClick.bind(this, item)} className="icon-start" />
+                            <span>{ item.Year }</span><FaStar onClick={this.favoritesClick.bind(this, item)} className="icon-start" />
                         </div>
                     </div>
                 </div>
