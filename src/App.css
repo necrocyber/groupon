@@ -30,10 +30,10 @@
 }
 
 .films {
-  padding-top : 10px;
-  padding-bottom : 30px;
-  padding-left: 10px;
-  padding-right: 10px;
+  height: 100vh;
+  display: absolute;
+  bottom : 0px;
+  padding: 00px 10px 100px 10px;
   width: 100%;
   overflow-x: hidden;
   overflow-y: visible;
@@ -58,7 +58,62 @@ outline: 1px solid slategrey;
   padding: 20px;
 }
 
+.head-films h3,span:nth-child(n) {
+  display: inline-flex;
+}
+
+.head-films span {
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.head-films span:hover {
+  color : red;
+}
+
+
 .col-9 {
   margin: 0px !important;
   padding: 0px !important;
+}
+
+.card {
+  border: none !important;
+  border-radius: 0px !important;
+}
+
+.card-footer {
+  padding: 0px !important;
+  background: black;
+  border-radius: 0px !important;
+}
+
+img {
+  border-radius: 0px !important; 
+}
+
+.icon-start {
+  float: right;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.icon-start:hover {
+  color : red;
+}
+
+
+
+
+/*ESTILOS PARA EL MENU LATERAL*/
+
+.side-head {
+  text-align: center;
+  width: 100%;
+}
+
+.title-flax {
+  color : red;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
